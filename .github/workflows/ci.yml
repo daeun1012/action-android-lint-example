@@ -20,10 +20,12 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run Gradle build
-        run: ./gradlew build
+        run: ./gradlew lint
 
       - name: Run Android Lint
         uses: dvdandroid/action-android-lint@v1.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: app/build/reports/lint-results.xml
+          reporter: github-pr-review
+          level: warning
